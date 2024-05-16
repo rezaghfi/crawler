@@ -1,2 +1,0 @@
-{'name': 'reza', 'age': 30}
-{'name': 'reza', 'age': 30}
