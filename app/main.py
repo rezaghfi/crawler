@@ -1,22 +1,27 @@
 from fastapi import FastAPI
-from database.db import *
+from sqlalchemy import Date
+from . import WebsiteScraper
+import datetime
+from pydantic import BaseModel
 
 app = FastAPI()
 
 @app.get('/')
-def root():
+async def root():
+  WebsiteScraper.WebsiteScraper.extract_data()  
   return {f'hello this crawler and scraper of website snn.ir'}
 
 # create api for counter of table counter
 @app.get('/count')
-def count_rows_of_database():
-  rows = 3
+async def count_rows_of_database():
+  rows = WebsiteScraper.WebsiteScraper.extract_count_from_database()
   return {f'count of pages table: {rows}'}
 
-# create api for csv
-@app.get('/get_csv_data')
-def get_csv_data():
-  # read csv
-  
-  
+class Item(BaseModel):
+  date: datetime.date
 
+# create api for csv
+@app.post('/csv/')
+async def csv_output_of_database(item: Item):
+  #show data
+  return {f'This API sends information that save before {item.date} day to kafka'}

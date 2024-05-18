@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from db import Database
+from . import Database_Function
+
 
 
 class WebsiteScraper():
@@ -16,7 +17,7 @@ class WebsiteScraper():
     response = requests.get(base_url)
     if response.status_code == 200:
       soup = BeautifulSoup(response.text, "html.parser")
-      Database.insert_db(base_url, "/", response.text, soup.get_text())
+      Database_Function.Database.insert_db(base_url, "/", response.text, soup.get_text())
       
       for link in soup.find_all("a", href=True):
         next_url = urljoin(base_url, link["href"])
@@ -37,13 +38,13 @@ class WebsiteScraper():
             text = soup.get_text()
 
             #save in db 
-            Database.insert_db(url, path, html, text)
+            Database_Function.Database.insert_db(url, path, html, text)
   
   @staticmethod
-  def extract_data_from_database():
-    pass
+  def extract_data_from_database(date):
+    data = Database_Function.Database.select_csv_db(date)
 
   @staticmethod
   def extract_count_from_database():
-    count = Database.count_of_table()
+    count = Database_Function.Database.count_of_table()
     return count
