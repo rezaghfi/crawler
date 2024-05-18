@@ -1,6 +1,0 @@
-{
-  "cSpell.words": ["datas", "fastapi", "htmls", "reza", "sqlalchemy"],
-  "cSpell.language": "en,en-US",
-  "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.autoImportCompletions": true
-}
