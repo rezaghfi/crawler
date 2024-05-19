@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, Table, Column, Integer, Text
+from sqlalchemy import MetaData, Table, Column, Integer, Text, Date
 
 metadata = MetaData()
 
@@ -9,5 +9,6 @@ page_table = Table(
     Column('url', Text),
     Column('path', Text),
     Column('html', Text),
-    Column('text', Text)
+    Column('text', Text),
+    Column("created_at", Date)
 )

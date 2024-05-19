@@ -43,6 +43,7 @@ class WebsiteScraper():
   @staticmethod
   def extract_data_from_database(date):
     data = Database_Function.Database.select_csv_db(date)
+    return data
 
   @staticmethod
   def extract_count_from_database():

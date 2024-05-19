@@ -1,6 +1,7 @@
 requests
 beautifulsoup4
 sqlalchemy
-psycopg2
+psycopg2-binary
 fastapi
 uvicorn
+kafka-python
