@@ -1,6 +1,6 @@
 from sqlalchemy import func, create_engine, insert, select
 from sqlalchemy.sql import func
-from . import Model
+from app import Model
 import csv
 
 
