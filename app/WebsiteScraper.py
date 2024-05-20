@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from . import Database_Function
+from app imp ort Database_Function
 
 
 
@@ -39,6 +39,8 @@ class WebsiteScraper():
 
             #save in db 
             Database_Function.Database.insert_db(url, path, html, text)
+            #---------------send to kafka------------------ 
+            ##############################################
   
   @staticmethod
   def extract_data_from_database(date):
