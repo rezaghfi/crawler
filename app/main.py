@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.website_scraping_crawling import WebsiteScraper
+from app.database import Database
 import datetime
 import uvicorn
 
@@ -14,15 +14,15 @@ def root():
 # create api for counter of table counter
 @app.get('/count')
 def count_rows_of_database():
-  rows = WebsiteScraper.extract_count_from_database()
-  return {"pagecount":f'{rows}'}
+  count = Database.count_of_table()
+  return {"pagecount":f'{count}'}
 
 
 # create api for csv
 @app.get('/output/{fromdate}/{todate}')
 async def csv_output_of_database(fromdate: datetime.date, todate: datetime.date):
   #show data
-  data = WebsiteScraper.extract_data_from_database(fromdate, todate)
+  data = Database.extract_excel_from_database(fromdate, todate)
   return {f'This API save info {fromdate} day to {todate} in excel file'}
 
 def run_fastapi():
