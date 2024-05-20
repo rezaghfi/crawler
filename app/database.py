@@ -30,13 +30,13 @@ class Database:
   
   # read data with filter in time
   @staticmethod
-  def select_csv_db(date):
+  def extract_excel_from_database(fromdate, todate):
     engine = create_engine("postgresql://postgres:1@localhost:5432/website_content")
     # Create a connection
     conn = engine.connect()
 
     # Perform a select query
-    query = select(Model.page_table).where(Model.page_table.c.created_at <= date)
+    query = select(Model.page_table).where((Model.page_table.c.created_at <= fromdate) & (Model.page_table.c.created_at >= todate))
     result = conn.execute(query)
 
     # Specify the file path to save the data

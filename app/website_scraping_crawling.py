@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from app imp ort Database_Function
+from app.database import Database
 
 
 
@@ -17,7 +17,7 @@ class WebsiteScraper():
     response = requests.get(base_url)
     if response.status_code == 200:
       soup = BeautifulSoup(response.text, "html.parser")
-      Database_Function.Database.insert_db(base_url, "/", response.text, soup.get_text())
+      Database.insert_db(base_url, "/", response.text, soup.get_text())
       
       for link in soup.find_all("a", href=True):
         next_url = urljoin(base_url, link["href"])
@@ -38,16 +38,16 @@ class WebsiteScraper():
             text = soup.get_text()
 
             #save in db 
-            Database_Function.Database.insert_db(url, path, html, text)
+            Database.insert_db(url, path, html, text)
             #---------------send to kafka------------------ 
             ##############################################
   
   @staticmethod
-  def extract_data_from_database(date):
-    data = Database_Function.Database.select_csv_db(date)
+  def extract_data_from_database(fromdate, todate):
+    data = Database.extract_excel_from_database(fromdate, todate)
     return data
 
   @staticmethod
   def extract_count_from_database():
-    count = Database_Function.Database.count_of_table()
+    count = Database.count_of_table()
     return count
