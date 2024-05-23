@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn:python3.8-slim
 
-WORKDIR /
+WORKDIR /app
 
 COPY ./requirements.txt /app/requirements.txt
 
@@ -12,4 +12,4 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
     
 
-COPY . .
+COPY . /app
