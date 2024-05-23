@@ -1,1 +1,4 @@
 scrapy
+kafka-python
+sqlalchemy
+psycopg2-binary

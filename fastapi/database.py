@@ -1,6 +1,6 @@
 from sqlalchemy import func, create_engine, insert, select
 from sqlalchemy.sql import func
-from app import Model
+from Model import page_table
 import csv
 
 
@@ -10,7 +10,7 @@ class Database:
   @staticmethod
   def insert_db(url, path, html, text):
     engine = create_engine("postgresql://postgres:1@localhost:5432/website_content")
-    stmt = insert(Model.page_table).values(url=url, path=path, html=html, text=text)
+    stmt = insert(page_table).values(url=url, path=path, html=html, text=text)
     with engine.connect() as conn:
         conn.execute(stmt)
         conn.commit()
@@ -23,7 +23,7 @@ class Database:
     conn = engine.connect()
 
     # Perform a select query
-    query = select(func.count()).select_from(Model.page_table)
+    query = select(func.count()).select_from(page_table)
     result = conn.execute(query).fetchall()
     result = result[0][0]
     return result
@@ -36,7 +36,7 @@ class Database:
     conn = engine.connect()
 
     # Perform a select query
-    query = select(Model.page_table).where((Model.page_table.c.created_at <= fromdate) & (Model.page_table.c.created_at >= todate))
+    query = select(Model.page_table).where((page_table.c.created_at <= fromdate) & (page_table.c.created_at >= todate))
     result = conn.execute(query)
 
     # Specify the file path to save the data

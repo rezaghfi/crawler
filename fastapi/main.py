@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.database import Database
+from database import Database
 import datetime
 import uvicorn
 

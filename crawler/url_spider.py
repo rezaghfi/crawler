@@ -1,4 +1,5 @@
 import scrapy
+from scrapy.crawler import CrawlerProcess
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
@@ -14,6 +15,12 @@ class UrlSpiderSpider(CrawlSpider):
         items = response.xpath('//text()').getall()
         for i in items:
             yield{
-                'text': items,
+                # 'text': items,
                 'url': response.url
             }
+            
+
+if __name__ == "__main__":
+    process = CrawlerProcess()
+    process.crawl(UrlSpiderSpider)
+    process.start()
