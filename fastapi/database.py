@@ -6,19 +6,12 @@ import csv
 
 class Database:
 
-  # insert data to pages table
-  @staticmethod
-  def insert_db(url, path, html, text):
-    engine = create_engine("postgresql://postgres:1@localhost:5432/website_content")
-    stmt = insert(page_table).values(url=url, path=path, html=html, text=text)
-    with engine.connect() as conn:
-        conn.execute(stmt)
-        conn.commit()
+
 
   #use count function to counter rows
   @staticmethod
   def count_of_table():
-    engine = create_engine("postgresql://postgres:1@localhost:5432/website_content")
+    engine = create_engine("postgresql://postgres:1@db:5432/website_content")
     # Create a connection
     conn = engine.connect()
 
@@ -31,7 +24,7 @@ class Database:
   # read data with filter in time
   @staticmethod
   def extract_excel_from_database(fromdate, todate):
-    engine = create_engine("postgresql://postgres:1@localhost:5432/website_content")
+    engine = create_engine("postgresql://postgres:1@db:5432/website_content")
     # Create a connection
     conn = engine.connect()
 
