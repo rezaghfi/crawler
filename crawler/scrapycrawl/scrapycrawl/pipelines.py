@@ -20,10 +20,11 @@ class SavingToPostgresPipeline(object):
 
     def create_connection(self):
         self.conn = psycopg2.connect(
-            host="localhost",
+            host="db",
             database="website_content",
             user="postgres",
-            password="1")
+            password="1",
+            port=5432)
         self.curr =self.conn.cursor()
 
     def process_item(self, item, spider):

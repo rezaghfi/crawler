@@ -4,7 +4,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from sqlalchemy import func, create_engine, insert, select
 from sqlalchemy.sql import func
-from Model import page_table
+from test.Model import page_table
 
 class UrlSpiderSpider(CrawlSpider):
     name = "url_spider"

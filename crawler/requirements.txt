@@ -1,4 +1,4 @@
 scrapy
+scrapy-xlsx
 kafka-python
-sqlalchemy
 psycopg2-binary
